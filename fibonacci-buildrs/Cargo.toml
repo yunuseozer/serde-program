@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "builder",
+    "fibonacci-demo",
+    "fibonacci-demo/demo_enclave",
+]
+
+[profile.release]
+panic = 'unwind'
