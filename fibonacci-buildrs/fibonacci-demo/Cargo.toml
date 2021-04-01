@@ -1,0 +1,20 @@
+[package]
+name = "fibonacci-demo"
+version = "0.1.0"
+authors = ["Automata Team"]
+edition = "2018"
+
+# specifies the enclave dependencies
+[package.metadata.geode]
+enclaves = [
+    "./demo_enclave",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sgx_types     = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+sgx_urts      = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+
+[build-dependencies]
+geode-builder = { path = "../builder" }
