@@ -37,7 +37,7 @@ Intel SGX application execution flow (image by Intel)
 - Proxy functions are **pure** C functions
 
 - The proxy functions are responsible for:
-  - Marshaling data into and out of the enclave: When parameters are passed as pointers, the data referenced by the pointer must be marshaled into and out of the enclave. Note that when providing a pointer parameter to a function, you *must* specify the direction by the keywords in brackets: [in], [out], or [in, out], respectively
+  - Marshalling data into and out of the enclave: When parameters are passed as pointers, the data referenced by the pointer must be marshaled into and out of the enclave. Note that when providing a pointer parameter to a function, you *must* specify the direction by the keywords in brackets: [in], [out], or [in, out], respectively
   - Placing the return value of the *real* ECALL or OCALL in an address referenced by a pointer parameter
   - Returning the success or failure of the ECALL or OCALL itself as an **sgx_status_t** value
   
@@ -69,7 +69,7 @@ Intel SGX application execution flow (image by Intel)
   - src/*.rs: The main logic of untrusted code
 - Trusted parts:
   - Enclave.config.xml: The enclave configuration file; specifies the user defined parameters of the enclave such as stack and heap space. Note that by default, there's 256 KB stack space per thread, and 1 MB global head space.
-  - Enclave.edl: Defines the ECALLS and OCALLS. EDL is a specific file format introduced by Intel, very similar to C heading file. *Edger8r*, a EDL compiler written in OCaml, converts *.edl to (1) Enclave_u.c + Enclave_u.h + (2) Enclave_t.c + Enclave_t.h, which contain proxy functions and marshaling data structure used in ECALL/OCALL operation
+  - Enclave.edl: Defines the ECALLS and OCALLS. EDL is a specific file format introduced by Intel, very similar to C heading file. *Edger8r*, a EDL compiler written in OCaml, converts *.edl to (1) Enclave_u.c + Enclave_u.h + (2) Enclave_t.c + Enclave_t.h, which contain proxy functions and marshalling data structure used in ECALL/OCALL operation
   - Enclave.lds: Linker script used to hide unnecessary symbols
   - Enclave_private.pem: The enclave's signing key. Used to generate the signed .so file
   - Cargo.toml: The manifest. The target is a staticlib obtained by compiling the trusted enclave part into an .a file, which is then linked together with serial sgx_* files provided by Intel to generate enclave.so. Finally, sgx_sign uses the private key stored in Enclave_private.pem, the configuration described in Enclave.config.xml and the .so file to generate enclave.signed.so
