@@ -17,4 +17,4 @@ sgx_types     = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-
 sgx_urts      = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
 
 [build-dependencies]
-geode-builder = { path = "../builder" }
+geode-builder = { path = "../../builder" }

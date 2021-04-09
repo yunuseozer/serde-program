@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "builder",
+    # "builder",
     "fibonacci-demo",
     "fibonacci-demo/demo_enclave",
 ]
