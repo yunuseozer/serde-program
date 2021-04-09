@@ -3,13 +3,9 @@ use std::hash::Hasher;
 #[cfg(feature = "std")]
 use serde;
 
-// #[cfg(feature = "sgx_enclave")]
-// use serde_sgx as serde;
-
 use serde::{Deserialize, Serialize};
 use twox_hash::XxHash64;
 
-// #[cfg_attr(feature = "sgx_enclave", serde(crate = "serde_sgx"))]
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct MyImportantObj {
     pub my_u128_value: u128,
