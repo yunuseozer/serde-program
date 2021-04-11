@@ -26,4 +26,4 @@ sgx_trts          = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-
 sgx_tkey_exchange = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
 
 [build-dependencies]
-geode-builder = { path = "../../builder"}
+geode-builder = { path = "../../../builder"}
