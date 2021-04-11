@@ -42,7 +42,7 @@ fn main() {
     let input_u128_value: u128 = 123;
     let input_string_value = CString::new("abc");
 
-    let input_u128_value_enclave_param:[u8; 16] = input_u128_value.to_be_bytes();
+    let input_u128_value_enclave_param:[u8; 16] = input_u128_value.to_le_bytes();
     let input_string_value_enclave_param = input_string_value.unwrap();
 
     let mut return_value = sgx_status_t::SGX_SUCCESS;

@@ -52,7 +52,7 @@ impl MyImportantObj {
     // [ my_u128_value : 16 bytes ][ my_string_value : my_string_value.len() bytes ]
     pub fn hash(&self) -> [u8; 8] {
         let mut hasher = XxHash64::with_seed(0);
-        let u128_vec: [u8; 16] = self.my_u128_value.to_be_bytes();
+        let u128_vec: [u8; 16] = self.my_u128_value.to_le_bytes();
         let string_vec = self.my_string_value.as_bytes();
         let mut data_vec: Vec<u8> = Vec::new();
         for data in u128_vec.iter() {
@@ -63,7 +63,7 @@ impl MyImportantObj {
         }
         println!("MyImportantObj hash(), data_vec = {:?}", data_vec);
         hasher.write(data_vec.as_slice());
-        hasher.finish().to_be_bytes()
+        hasher.finish().to_le_bytes()
     }
 
     pub fn to_json(&self) -> String {
@@ -120,7 +120,7 @@ mod tests {
 
     #[test]
     fn test_my_important_obj() {
-        let expected_hash_value: [u8; 8] = [29, 232, 61, 231, 178, 10, 168, 156];
+        let expected_hash_value: [u8; 8] = [156, 168, 10, 178, 231, 61, 232, 29];
         let expected_json_string = "{\"my_u128_value\":\"0\",\"my_string_value\":\"abc\"}";
         let obj = MyImportantObj::new(0, "abc");
         let obj_hash = obj.hash();

@@ -29,7 +29,7 @@ pub unsafe extern "C" fn my_important_obj_init(
     if let Ok(mut obj) = MY_IMPORTANT_OBJ.lock() {
         let u128_value: [u8; 16] = core::slice::from_raw_parts(my_u128_value, 16).try_into().unwrap();
         let new_my_important_obj = MyImportantObj::new(
-            u128::from_be_bytes(u128_value),
+            u128::from_le_bytes(u128_value),
             CStr::from_ptr(my_string_value).to_str().unwrap()
         );
         *obj = Some(new_my_important_obj);
