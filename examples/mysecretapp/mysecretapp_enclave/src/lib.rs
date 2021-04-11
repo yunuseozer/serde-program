@@ -17,9 +17,9 @@ use std::borrow::ToOwned;
 use important::*;
 
 lazy_static! {
-    static ref MY_IMPORTANT_OBJ: SgxMutex<MyImportantObj> = {
+    static ref MY_IMPORTANT_OBJ: SgxMutex<(MyImportantObj, bool)> = {
         let my_important_obj = MyImportantObj::new(0, "a");
-        SgxMutex::new(my_important_obj)
+        SgxMutex::new((my_important_obj, false))
     };
 }
 
@@ -28,10 +28,11 @@ pub unsafe extern "C" fn my_important_obj_init(
     my_u128_value: *const u8,
     my_string_value: *const c_char
 ) -> sgx_status_t {
-    if let Ok(mut my_important_obj) = MY_IMPORTANT_OBJ.lock() {
+    if let Ok(mut obj) = MY_IMPORTANT_OBJ.lock() {
         let u128_value: [u8; 16] = core::slice::from_raw_parts(my_u128_value, 16).try_into().unwrap();
-        my_important_obj.my_u128_value = u128::from_be_bytes(u128_value);
-        my_important_obj.my_string_value = CStr::from_ptr(my_string_value).to_str().unwrap().to_owned();
+        obj.0.my_u128_value = u128::from_be_bytes(u128_value);
+        obj.0.my_string_value = CStr::from_ptr(my_string_value).to_str().unwrap().to_owned();
+        obj.1 = true;
     }
     sgx_status_t::SGX_SUCCESS
 }
@@ -42,8 +43,11 @@ pub unsafe extern "C" fn my_important_obj_hash(
     hash_size: *mut usize
 ) -> sgx_status_t {
     let mut ret = [0_u8; 8];
-    if let Ok(my_important_obj) = MY_IMPORTANT_OBJ.lock() {
-        ret = my_important_obj.hash();
+    if let Ok(obj) = MY_IMPORTANT_OBJ.lock() {
+        if false == obj.1 {
+            return sgx_status_t::SGX_ERROR_INVALID_STATE;
+        }
+        ret = obj.0.hash();
     }
     *hash_size = 8;
     let ret_buf_slice = core::slice::from_raw_parts_mut(hash_result, *hash_size);
@@ -58,8 +62,11 @@ pub unsafe extern "C" fn my_important_obj_to_json(
     json_size: *mut usize
 ) -> sgx_status_t {
     let mut ret: String = String::from("");
-    if let Ok(my_important_obj) = MY_IMPORTANT_OBJ.lock() {
-        ret = my_important_obj.to_json();
+    if let Ok(obj) = MY_IMPORTANT_OBJ.lock() {
+        if false == obj.1 {
+            return sgx_status_t::SGX_ERROR_INVALID_STATE;
+        }
+        ret = obj.0.to_json();
     }
     let ret_array = ret.as_bytes();
     let len = ret_array.len();
