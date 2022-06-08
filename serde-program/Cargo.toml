@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    # "builder",
+    "serde-demo",
+    "serde-demo/demo_enclave",
+]
+
+[profile.release]
+panic = 'unwind'
