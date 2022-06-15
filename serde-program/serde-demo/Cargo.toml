@@ -13,8 +13,8 @@ enclaves = [
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-sgx_types     = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
-sgx_urts      = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
+sgx_types     = { git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git", rev = "v1.1.4-upgrade" }
+sgx_urts      = { git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git", rev = "v1.1.4-upgrade" }
 
 [build-dependencies]
 geode-builder = { path = "../../builder" }

@@ -18,16 +18,16 @@ crate-type = [
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-sgx_tstd          = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git", features = ["untrusted_fs"] }
-sgx_types         = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
-sgx_crypto_helper = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git", package = "sgx_tcrypto_helper" }
-sgx_rand          = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
-sgx_trts          = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
-sgx_tkey_exchange = { rev = "v1.1.4", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
+sgx_tstd          = { rev = "v1.1.4-upgrade", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git", features = ["untrusted_fs"] }
+sgx_types         = {rev = "v1.1.4-upgrade", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
+sgx_crypto_helper = { rev = "v1.1.4-upgrade", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git", package = "sgx_tcrypto_helper" }
+sgx_rand          = { rev = "v1.1.4-upgrade", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
+sgx_trts          = { rev = "v1.1.4-upgrade", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
+sgx_tkey_exchange = { rev = "v1.1.4-upgrade", git = "https://github.com/yunuseozer/incubator-teaclave-sgx-sdk.git" }
 serde = { version = "1.0", git = "https://github.com/yunuseozer/serde-sgx.git", features = ["derive"] }
 
 
-#erde_json = { version = "1.0", git = "https://github.com/mesalock-linux/serde-json-sgx.git" }
+serde_json = { version = "1.0", git = "https://github.com/mesalock-linux/serde-json-sgx.git" }
 
 
 [build-dependencies]
