@@ -27,7 +27,7 @@ sgx_tkey_exchange = { rev = "v1.1.4-upgrade", git = "https://github.com/yunuseoz
 serde = { version = "1.0", git = "https://github.com/yunuseozer/serde-sgx.git", features = ["derive"] }
 
 
-serde_json = { version = "1.0", git = "https://github.com/mesalock-linux/serde-json-sgx.git" }
+serde_json = { version = "1.0", git = "https://github.com/yunuseozer/serde-json-sgx.git" }
 
 
 [build-dependencies]
