@@ -19,9 +19,10 @@ mod teaclave;
 pub use enclave::Build as EnclaveBuild;
 pub use geode::Build as GeodeBuild;
 
+
 lazy_static! {
     static ref CARGO_MANIFEST_DIR: String = env::var("CARGO_MANIFEST_DIR").unwrap();
-    static ref PROFILE: String = env::var("PROFILE").unwrap();
+    static ref PROFILE: String = String::from("dev");
     static ref OUT_DIR: String = env::var("OUT_DIR").unwrap();
     static ref ENCLAVE_SIGNING_KEY: String = {
         if let Ok(val) = env::var("ENCLAVE_SIGNING_KEY") {

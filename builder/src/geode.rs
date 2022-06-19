@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
-
 use crate::*;
 
 #[derive(Debug, Serialize, Deserialize)]
