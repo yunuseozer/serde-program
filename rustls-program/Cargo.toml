@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    # "builder",
+    "rustls-demo",
+    "rustls-demo/demo_enclave",
+]
+
+[profile.release]
+panic = 'unwind'
