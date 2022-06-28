@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    # "builder",
+    "threadpool-demo",
+    "threadpool-demo/demo_enclave",
+]
+
+[profile.release]
+panic = 'unwind'
